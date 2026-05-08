@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../lib/Subabase';
+import { supabase } from '../lib/subabase';
 import searchLocation from '../lib/geoLocation';
 import Modal from '../componenets/ModalWrapper';
 import LocationSuggestionModal from '../componenets/LocationSuggestionModal';
@@ -52,7 +52,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
     if (supabaseError) {
       setError(supabaseError.message);
       // CHECK THE ERROR HERE
-      if (supabaseError.message.includes('unique constraint')) {
+      if (supabaseError.message.includes('email')) {
         setErrorMessage("You're already on the waitlist!");
       } else {
         setErrorMessage(supabaseError.message);
