@@ -41,11 +41,18 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
       setError('Please enter a valid email address.');
       return;
     }
-    setEmail(normalised); // store trimmed value
-    setError('');
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setEmail(normalised);
+
+    const { error: supabaseError } = await supabase
+      .from('guest-sign-ups')
+      .insert([{ email: email, type: activeTab }]);
+
+      setIsOpen(true);
+      setError(''); // Clear errors on success
+    }
+    setLoading(false);
+  };
+    } else {
       setSubmitted(true);
     }, 1200);
   };
@@ -82,6 +89,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   };
 
   return (
+    <>
     <div className="w-full max-w-md mx-auto flex flex-col items-center gap-5">
       <div className="flex items-center bg-gray-100 rounded-full p-1 gap-1">
         {['Guest', 'Restaurant'].map((tab) => (
@@ -117,13 +125,13 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
               placeholder={
                 activeTab === 'Guest'
                   ? 'your@email.com'
-                  : 'restaurant@email.com'
+                  : 'example@restaurant.com'
               }
-              className={`${
+              className={`bg-white px-4 py-2 w-full rounded-full outline-none transition-all duration-150 ${
                 error
                   ? 'border-red-400 focus:ring-2 focus:ring-red-200'
-                  : 'w-full bg-white dark:bg-white rounded-full px-4 py-2 outline-none'
-              } bg-white`}
+                  : 'w-full bg-white dark:bg-white'
+              }`}
               disabled={loading}
             />
           </div>
@@ -135,10 +143,13 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
             {loading ? 'Joining…' : 'Join Waitlist'}
           </button>
         </form>
-      )}
 
-      {error && (
-        <p className="text-xs text-red-500 -mt-2 self-start pl-4">{error}</p>
+        {error && errorMessage && (
+          <div className='flex justify-center w-full'>
+            <p className="text-xs text-red-500 -mt-2 self-start pl-4">
+              {errorMessage}
+            </p>
+          </div>
       )}
     </div>
 
