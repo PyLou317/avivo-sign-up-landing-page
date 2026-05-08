@@ -120,6 +120,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
               type="email"
               id={`email-${id}`}
               value={email}
+              autoFocus={true}
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (error) setError('');
@@ -147,7 +148,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
         </form>
 
         {error && errorMessage && (
-          <div className='flex justify-center w-full'>
+          <div className="flex justify-center w-full">
             <p className="text-xs text-red-500 -mt-2 self-start pl-4">
               {errorMessage}
             </p>
