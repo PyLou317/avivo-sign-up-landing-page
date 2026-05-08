@@ -19,6 +19,8 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   const [locationSaved, setLocationSaved] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const isValidEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
 
   // Derived state for button disabled condition
