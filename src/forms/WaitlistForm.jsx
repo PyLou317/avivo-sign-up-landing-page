@@ -133,6 +133,19 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
         <p className="text-xs text-red-500 -mt-2 self-start pl-4">{error}</p>
       )}
     </div>
+
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <LocationSuggestionModal
+          query={query}
+          cityResults={cityResults}
+          handleSearch={handleSearch}
+          handleLocationSelect={handleLocationSelect}
+          handleLocationSubmit={handleLocationSubmit}
+          showSuggestions={showSuggestions}
+          setShowSuggestions={setShowSuggestions}
+        />
+      </Modal>
+    </>
   );
 }
 
