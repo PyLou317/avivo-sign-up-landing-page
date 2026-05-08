@@ -1,33 +1,18 @@
 import { useState } from 'react';
-
-const LOCATION_SUGGESTIONS = [
-  'Vancouver',
-  'Yaletown',
-  'Kitsilano',
-  'Mount Pleasant',
-  'Burnaby',
-  'Surrey',
-  'Langley',
-  'Richmond',
-  'North Vancouver',
-  'Coquitlam',
-  'Abbotsford',
-  'Chilliwack',
-  'Whistler',
-  'Kelowna',
-  'Victoria',
-  'Seattle',
-  'Calgary',
-  'Edmonton',
-  'Toronto',
-  'Montreal',
-];
+import { supabase } from '../lib/Subabase';
+import searchLocation from '../lib/geoLocation';
+import Modal from '../componenets/ModalWrapper';
+import LocationSuggestionModal from '../componenets/LocationSuggestionModal';
 
 function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [query, setQuery] = useState('');
+  const [cityResults, setCityResults] = useState([]);
 
   // Location follow-up state
   const [locationInput, setLocationInput] = useState('');
@@ -40,7 +25,15 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   const trimmedEmail = email.trim();
   const isDisabled = trimmedEmail === '' || loading;
 
-  const handleSubmit = (e) => {
+  const handleSearch = async (e) => {
+    setQuery(e.target.value);
+    if (e.target.value.length > 2) {
+      const data = await searchLocation(e.target.value);
+      setCityResults(data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return; // guard against rapid re-submits
     const normalised = email.trim();
@@ -64,13 +57,28 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
     : [];
 
   const handleLocationSelect = (loc) => {
+    setQuery(loc.name);
     setLocationInput(loc);
     setShowSuggestions(false);
   };
 
-  const handleLocationSave = () => {
+  const handleLocationSubmit = async (e) => {
     setLocationSaved(true);
-    setShowSuggestions(false);
+    e.preventDefault();
+
+    const { error } = await supabase
+      .from('new-location-suggestions')
+      .insert([
+        { city_name: locationInput.name, province: locationInput.province },
+      ]);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSubmitted(true);
+      setIsOpen(false);
+    }
+    setLoading(false);
   };
 
   return (
