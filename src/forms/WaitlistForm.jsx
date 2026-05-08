@@ -52,16 +52,6 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
     }
     setLoading(false);
   };
-    } else {
-      setSubmitted(true);
-    }, 1200);
-  };
-
-  const filteredSuggestions = locationInput.trim()
-    ? LOCATION_SUGGESTIONS.filter((loc) =>
-        loc.toLowerCase().includes(locationInput.toLowerCase()),
-      )
-    : [];
 
   const handleLocationSelect = (loc) => {
     setQuery(loc.name);
