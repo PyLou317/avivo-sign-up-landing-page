@@ -47,6 +47,16 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
       .from('guest-sign-ups')
       .insert([{ email: email, type: activeTab }]);
 
+    if (supabaseError) {
+      setError(supabaseError.message);
+      // CHECK THE ERROR HERE
+      if (supabaseError.message.includes('unique constraint')) {
+        setErrorMessage("You're already on the waitlist!");
+      } else {
+        setErrorMessage(supabaseError.message);
+      }
+    } else {
+      setSubmitted(true);
       setIsOpen(true);
       setError(''); // Clear errors on success
     }
