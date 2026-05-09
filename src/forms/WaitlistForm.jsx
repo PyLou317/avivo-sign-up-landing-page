@@ -27,6 +27,8 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   const trimmedEmail = email.trim();
   const isDisabled = trimmedEmail === '' || loading;
 
+  console.log('Location Input: ', locationInput);
+
   const handleSearch = async (e) => {
     setQuery(e.target.value);
     if (e.target.value.length > 2) {
@@ -60,13 +62,24 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
     } else {
       setSubmitted(true);
       setIsOpen(true);
-      setError(''); // Clear errors on success
+      setEmail('');
+      setError('');
+      setErrorMessage('');
+      setQuery('');
+      setCityResults([]);
+      setLocationInput('');
+      setLocationSaved(false);
+      setShowSuggestions(false);
     }
     setLoading(false);
   };
 
   const handleLocationSelect = (loc) => {
-    setQuery(loc.name);
+    const fullLocation = loc.province
+      ? `${loc.name}, ${loc.province}`
+      : loc.name;
+
+    setQuery(fullLocation);
     setLocationInput(loc);
     setShowSuggestions(false);
   };
