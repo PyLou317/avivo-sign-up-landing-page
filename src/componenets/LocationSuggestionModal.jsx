@@ -19,6 +19,8 @@ export default function LocationSuggestionModal({
         <div className="relative w-full">
           <div className="flex gap-2">
             <input
+              id="location"
+              name="location"
               type="text"
               value={query}
               onChange={handleSearch}
