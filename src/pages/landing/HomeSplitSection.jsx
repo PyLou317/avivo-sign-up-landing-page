@@ -1,27 +1,29 @@
 import { NavLink } from 'react-router';
+import RestaurantsLearnMore from '../restaurants/RestaurantsLearnMore';
+import GuestsLearnMore from '../guests/GuestLearnMore';
 
-function HomeSplitSection() {
-  const paths = [
-    {
-      title: 'Guests',
-      description:
-        'Bring your friends to restaurants you love — and get rewarded.',
-      cta: 'Learn more',
-    },
-    {
-      title: 'Restaurants',
-      description: 'Turn your regulars into a verified source of new guests.',
-      cta: 'Learn more',
-    },
-  ];
+function HomeSplitSection({ activeTab }) {
+  //   const paths = [
+  //     {
+  //       title: 'Guests',
+  //       description:
+  //         'Bring your friends to restaurants you love — and get rewarded.',
+  //       cta: 'Learn more',
+  //     },
+  //     {
+  //       title: 'Restaurants',
+  //       description: 'Turn your regulars into a verified source of new guests.',
+  //       cta: 'Learn more',
+  //     },
+  //   ];
 
   return (
     <section className="w-full px-6 py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto">
-        <p className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-10">
-          Who it's for
+        <p className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-5">
+          How It Works
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {paths.map((path) => (
             <div
               key={path.title}
@@ -41,7 +43,10 @@ function HomeSplitSection() {
               </NavLink>
             </div>
           ))}
-        </div>
+        </div> */}
+
+        {activeTab === 'Guest' && <GuestsLearnMore />}
+        {activeTab === 'Restaurant' && <RestaurantsLearnMore />}
       </div>
     </section>
   );

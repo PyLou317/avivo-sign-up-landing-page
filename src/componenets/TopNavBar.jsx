@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router';
 import ScrollToTop from '../utils/ScrollToTop';
+import ActiveTabToggle from './ActiveTabToggle';
 
 const Navbar = ({ activeTab, setActiveTab }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,31 +14,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
           <div className="text-xl font-bold tracking-tighter">AVIVO</div>
         </NavLink>
 
-        <div className="relative flex bg-gray-100 p-1 rounded-full w-[180px] sm:w-[300px] sm:ms-auto">
-          <div
-            className={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] transition-transform duration-300 ease-out ${
-              activeTab === 'Restaurant' ? 'translate-x-full' : 'translate-x-0'
-            }`}
-          >
-            <div className="absolute inset-0 bg-indigo-500/50 blur-md rounded-full animate-pulse" />
-            <div className="relative h-full w-full bg-black rounded-full shadow-[0_0_15px_rgba(79,70,229,0.4)]" />
-          </div>
-
-          {['Guest', 'Restaurant'].map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActiveTab(tab)}
-              className={`relative z-10 flex-1 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-sm font-semibold transition-colors duration-300 text-center ${
-                activeTab === tab
-                  ? 'text-white'
-                  : 'text-gray-500 hover:text-gray-800'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        <ActiveTabToggle activeTab={activeTab} setActiveTab={setActiveTab} />
 
         {/* Mobile Menu Button */}
         <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>

@@ -17,8 +17,8 @@ function App({ activeTab, setActiveTab }) {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      <HomeSupportingLine />
-      <HomeSplitSection />
+      <HomeSupportingLine activeTab={activeTab}/>
+      <HomeSplitSection activeTab={activeTab} />
       <HomeLocationStrip />
       <FinalCTA id="home-final" formRef={formRef} />
       <Footer />

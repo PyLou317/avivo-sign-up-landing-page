@@ -8,12 +8,8 @@ import Footer from '../../componenets/Footer.jsx';
 function RestaurantsLearnMore() {
   return (
     <main className="w-full font-sans antialiased mt-15">
-      {/* <RestaurantsHero /> */}
-      <RestaurantsProblemInsight />
       <RestaurantsHowItWorks />
       <RestaurantsWhyItMatters />
-      <FinalCTA id="restaurants-final" defaultTab="Restaurant" />
-      <Footer />
     </main>
   );
 }

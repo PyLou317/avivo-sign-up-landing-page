@@ -7,11 +7,8 @@ import Footer from '../../componenets/Footer.jsx';
 function GuestsLearnMore() {
   return (
     <main className="w-full font-sans antialiased mt-15">
-      {/* <GuestsHero /> */}
       <GuestsHowItWorks />
       <GuestsWhyItMatters />
-      <FinalCTA id="guests-final" />
-      <Footer />
     </main>
   );
 }

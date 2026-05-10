@@ -128,7 +128,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
           className="w-full flex justify-center flex-col sm:flex-row gap-2"
           noValidate
         >
-          <div className="relative group p-[2px] sm:w-full rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 animate-pulse">
+          <div className="relative group p-[2px] sm:w-full rounded-full bg-gradient-to-r from-[#1E3A8A] via-[#D4AF37] to-[#1E3A8A] animate-pulse">
             <input
               type="email"
               id={`email-${id}`}

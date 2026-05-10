@@ -6,7 +6,7 @@ const RESTAURANT_STEPS = [
 
 function RestaurantsHowItWorks() {
   return (
-    <section className="w-full px-6 py-16 bg-white">
+    <section className="w-full px-6 py-16">
       <div className="max-w-4xl mx-auto flex flex-col gap-10">
         {/* Steps */}
         <div>
@@ -17,7 +17,7 @@ function RestaurantsHowItWorks() {
             {RESTAURANT_STEPS.map((step) => (
               <div
                 key={step.number}
-                className="bg-gray-50 border border-gray-100 rounded-2xl p-8 flex flex-col gap-4"
+                className="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col gap-4"
               >
                 <span className="text-xs font-semibold tracking-[0.15em] text-gray-300">
                   {step.number}
@@ -35,7 +35,7 @@ function RestaurantsHowItWorks() {
           <p className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase mb-6">
             Verification
           </p>
-          <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <div className="bg-white border border-gray-100 rounded-2xl p-8">
             <p className="text-base font-light text-black leading-snug">
               Every new guest is verified at the table — so you only pay for new
               guests.
@@ -48,7 +48,7 @@ function RestaurantsHowItWorks() {
           <p className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase mb-6">
             Launch loyalty
           </p>
-          <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <div className="bg-white border border-gray-100 rounded-2xl p-8">
             <p className="text-base font-light text-black leading-snug">
               Reward your regulars for coming back.
             </p>
