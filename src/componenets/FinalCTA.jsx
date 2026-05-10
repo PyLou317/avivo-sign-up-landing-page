@@ -17,15 +17,16 @@ function FinalCTA({ id, formRef }) {
         </span>
         <button
           onClick={handleClick}
-          className="text-3xl sm:text-4xl font-light text-black tracking-tight hover:text-gray-500 hover:cursor-pointer transition-all duration-200"
+          className="relative p-[2px] rounded-full transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
         >
-          I want in!
+          {/* The Gradient Border Layer */}
+          <div className="absolute inset-0 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full animate-pulse" />
+
+          {/* The Inner Button Content */}
+          <div className="relative px-5 py-2 bg-white rounded-full text-black text-md font-medium tracking-tight">
+            I want in!
+          </div>
         </button>
-        {/* <WaitlistForm
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          id={id}
-        /> */}
         <p className="text-xs text-gray-400">
           Get access before we launch in Vancouver.
         </p>
