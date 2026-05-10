@@ -7,9 +7,9 @@ function HomeHero({ formRef }) {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center px-6 pt-24 pb-16 bg-white">
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
-        <span className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase">
+        {/* <span className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase">
           AVIVO
-        </span>
+        </span> */}
         <h1 className="flex flex-col mt-5 text-4xl sm:text-5xl md:text-6xl font-extralight text-gray-600 leading-tight tracking-tight">
           <span>
             bring <span className="font-medium text-black">friends.</span>
