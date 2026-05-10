@@ -20,7 +20,7 @@ function FinalCTA({ id, formRef }) {
           className="relative p-[2px] rounded-full transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
         >
           {/* The Gradient Border Layer */}
-          <div className="absolute inset-0 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-full animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A8A] via-[#D4AF37] to-[#1E3A8A] rounded-full animate-pulse" />
 
           {/* The Inner Button Content */}
           <div className="relative px-5 py-2 bg-white rounded-full text-black text-md font-medium tracking-tight">
