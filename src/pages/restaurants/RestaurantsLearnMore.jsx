@@ -7,8 +7,8 @@ import Footer from '../../componenets/Footer.jsx';
 
 function RestaurantsLearnMore() {
   return (
-    <main className="w-full font-sans antialiased">
-      {/* <RestaurantsHero /> */}
+    <main className="w-full font-sans antialiased mt-15">
+      <RestaurantsHero />
       <RestaurantsProblemInsight />
       <RestaurantsHowItWorks />
       <RestaurantsWhyItMatters />
