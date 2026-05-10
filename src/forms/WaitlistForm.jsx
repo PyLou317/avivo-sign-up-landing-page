@@ -106,7 +106,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   return (
     <>
       <div className="w-full max-w-md mx-auto flex flex-col items-center gap-5">
-        <div className="flex items-center bg-gray-100 rounded-full p-1 gap-1">
+        {/* <div className="flex items-center bg-gray-100 rounded-full p-1 gap-1">
           {['Guest', 'Restaurant'].map((tab) => (
             <button
               key={tab}
@@ -121,7 +121,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
               {tab}
             </button>
           ))}
-        </div>
+        </div> */}
 
         <form
           onSubmit={handleSubmit}

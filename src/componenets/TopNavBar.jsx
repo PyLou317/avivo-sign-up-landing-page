@@ -2,13 +2,8 @@ import { useState } from 'react';
 import { NavLink } from 'react-router';
 import ScrollToTop from '../utils/ScrollToTop';
 
-const Navbar = () => {
+const Navbar = ({ activeTab, setActiveTab }) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navLinks = [
-    { name: 'Guests', path: '/guests' },
-    { name: 'Restaurants', path: '/restaurants' },
-  ];
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
@@ -18,29 +13,30 @@ const Navbar = () => {
           <div className="text-xl font-bold tracking-tighter">AVIVO</div>
         </NavLink>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors hover:text-gray-500 ${
-                  isActive ? 'text-black' : 'text-gray-400'
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
-          <NavLink to="/">
+        <div className="relative flex bg-gray-100 p-1 rounded-full w-[180px] sm:w-[300px] sm:ms-auto">
+          <div
+            className={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] transition-transform duration-300 ease-out ${
+              activeTab === 'Restaurant' ? 'translate-x-full' : 'translate-x-0'
+            }`}
+          >
+            <div className="absolute inset-0 bg-indigo-500/50 blur-md rounded-full animate-pulse" />
+            <div className="relative h-full w-full bg-black rounded-full shadow-[0_0_15px_rgba(79,70,229,0.4)]" />
+          </div>
+
+          {['Guest', 'Restaurant'].map((tab) => (
             <button
-              onClick={ScrollToTop}
-              className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:scale-105 transition-transform"
+              key={tab}
+              type="button"
+              onClick={() => setActiveTab(tab)}
+              className={`relative z-10 flex-1 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-sm font-semibold transition-colors duration-300 text-center ${
+                activeTab === tab
+                  ? 'text-white'
+                  : 'text-gray-500 hover:text-gray-800'
+              }`}
             >
-              Join now
+              {tab}
             </button>
-          </NavLink>
+          ))}
         </div>
 
         {/* Mobile Menu Button */}
