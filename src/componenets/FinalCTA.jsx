@@ -5,7 +5,7 @@ function FinalCTA({ id, formRef }) {
     if (id === 'restaurants-final' || id === 'guests-final') {
       window.location.href = path;
     } else {
-      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   };
 
