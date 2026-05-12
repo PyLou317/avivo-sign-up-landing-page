@@ -34,22 +34,6 @@ const Navbar = ({ activeTab, setActiveTab }) => {
             <div className="w-6 h-0.5 bg-black"></div>
           </button>
         </div>
-
-        {/* Mobile Dropdown */}
-        {isOpen && (
-          <div className="md:hidden bg-white border-b border-gray-100 px-6 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium"
-              >
-                {link.name}
-              </NavLink>
-            ))}
-          </div>
-        )}
       </nav>
     </>
   );
