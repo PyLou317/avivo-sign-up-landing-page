@@ -2,7 +2,7 @@ export default function AreYouARestaurant({ activeTab }) {
   return (
     <div
       className={`flex items-center gap-2 justify-center sm:justify-end select-none transition-all duration-300 ${
-        activeTab === 'Restaurant' ? 'sm:translate-x-5 translate-x-20' : 'sm:me-4 translate-x-7'
+        activeTab === 'Restaurant' ? 'sm:translate-x-5 translate-x-20' : 'sm:me-10 translate-x-7'
       }`}
     >
       {activeTab === 'Restaurant' && (
