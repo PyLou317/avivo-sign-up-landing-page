@@ -128,7 +128,8 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
           className="w-full flex justify-center flex-col sm:flex-row gap-2"
           noValidate
         >
-          <div className="relative group p-[2px] sm:w-full rounded-full bg-gradient-to-r from-[#1E3A8A] via-[#D4AF37] to-[#1E3A8A] animate-pulse">
+          <div className="w-full relative p-[2px] overflow-hidden rounded-full group">
+            <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,#1E3A8A_0deg,#3B82F6_120deg,#D4AF37_240deg,#1E3A8A_360deg)] group-focus-within:animate-[spin_1.5s_linear_infinite]" />
             <input
               type="email"
               id={`email-${id}`}
@@ -143,7 +144,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
                   ? 'your@email.com'
                   : 'example@restaurant.com'
               }
-              className={`bg-white px-4 py-2 w-full rounded-full outline-none transition-all duration-150 ${
+              className={`relative w-full h-full bg-white px-4 py-2 rounded-full outline-none text-black ${
                 error
                   ? 'border-red-400 focus:ring-2 focus:ring-red-200'
                   : 'w-full bg-white dark:bg-white'
