@@ -23,7 +23,7 @@ export default function AreYouARestaurant({ activeTab }) {
       )}
 
       <p className="font-handwriting text-2xl sm:text-3xl text-gray-500 tracking-wide mt-2">
-        {activeTab === 'Guest' ? 'restaurant owner' : 'guest'}? click here
+        {activeTab === 'Guest' ? 'restaurant' : 'guest'}? click here
       </p>
 
       {activeTab === 'Guest' && (
