@@ -22,7 +22,7 @@ export default function AreYouARestaurant({ activeTab }) {
         </svg>
       )}
 
-      <p className="font-handwriting text-xl sm:text-3xl text-gray-500 tracking-wide mt-2">
+      <p className="font-handwriting text-2xl sm:text-3xl text-gray-500 tracking-wide mt-2">
         {activeTab === 'Guest' ? 'restaurant owner' : 'guest'}? click here
       </p>
 
