@@ -23,9 +23,9 @@ const Navbar = ({ activeTab, setActiveTab }) => {
             />
 
             {/* Floating Hint - Placed absolutely below the navbar */}
-            <div className="absolute top-[calc(100%+10px)] right-20 text-right whitespace-nowrap animate-in fade-in slide-in-from-top-1 duration-500">
+            {/* <div className="absolute top-[calc(100%+10px)] right-20 text-right whitespace-nowrap animate-in fade-in slide-in-from-top-1 duration-500">
               <AreYouARestaurant activeTab={activeTab} />
-            </div>
+            </div> */}
           </div>
 
           {/* Mobile Menu Button */}
