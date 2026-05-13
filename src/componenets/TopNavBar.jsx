@@ -29,10 +29,10 @@ const Navbar = ({ activeTab, setActiveTab }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
+          {/* <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
             <div className="w-6 h-0.5 bg-black mb-1.5"></div>
             <div className="w-6 h-0.5 bg-black"></div>
-          </button>
+          </button> */}
         </div>
       </nav>
     </>
