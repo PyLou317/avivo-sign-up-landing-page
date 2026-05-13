@@ -1,8 +1,8 @@
 function HomeSupportingLine({ activeTab }) {
   return (
-    <section className="w-full px-6 py-14 bg-gray-50">
+    <section className="w-full px-6 py-14 bg-black">
       <div className="max-w-2xl mx-auto text-center">
-        <p className="text-2xl sm:text-3xl font-light text-black leading-snug tracking-tight">
+        <p className="text-2xl sm:text-3xl font-light text-gray-300 leading-snug tracking-tight">
           {activeTab === 'Guest'
             ? 'Your friends already know where you should eat next.'
             : 'Your regulars know who to bring next.'}
