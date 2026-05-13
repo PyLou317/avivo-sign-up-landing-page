@@ -10,8 +10,10 @@ function HomeHero({ formRef }) {
         <span className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase">
           AVIVO
         </span>
-        <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-extralight text-black leading-tight tracking-tight">
-          bring <span className="font-medium">friends.</span>
+        <h1 className="flex flex-col mt-5 text-4xl sm:text-5xl md:text-6xl font-extralight text-black leading-tight tracking-tight">
+          <span className='block sm:inline'>
+            bring <span className="font-medium">friends.</span>
+          </span>
           <span className="block sm:inline">
             eat <span className="font-medium">local.</span>
           </span>{' '}
