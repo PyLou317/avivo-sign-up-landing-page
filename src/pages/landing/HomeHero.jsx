@@ -5,7 +5,7 @@ function HomeHero({ formRef }) {
   const [activeTab, setActiveTab] = useState('Guest');
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center px-6 pt-24 pb-16 bg-white">
+    <section className="relative w-full min-h-screen flex items-center justify-center px-6 pt-10 pb-10 bg-white">
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
         <span className="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase">
           AVIVO
