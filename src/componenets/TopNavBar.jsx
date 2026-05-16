@@ -22,17 +22,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
               setActiveTab={setActiveTab}
             />
 
-            {/* Floating Hint - Placed absolutely below the navbar */}
-            {/* <div className="absolute top-[calc(100%+10px)] right-20 text-right whitespace-nowrap animate-in fade-in slide-in-from-top-1 duration-500">
-              <AreYouARestaurant activeTab={activeTab} />
-            </div> */}
           </div>
-
-          {/* Mobile Menu Button */}
-          {/* <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
-            <div className="w-6 h-0.5 bg-black mb-1.5"></div>
-            <div className="w-6 h-0.5 bg-black"></div>
-          </button> */}
         </div>
       </nav>
     </>
