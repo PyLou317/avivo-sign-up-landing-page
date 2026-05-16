@@ -108,9 +108,8 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
     <div className="w-full max-w-md mx-auto flex flex-col items-center gap-5">
       <ActiveTabToggle activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {submitted ? (
+      {/* {submitted ? (
         <div className="w-full flex flex-col items-center gap-4">
-          {/* Confirmation */}
           <div className="text-center">
             <p className="text-base font-medium text-black">You're in.</p>
             <p className="text-sm text-gray-500 mt-1">
@@ -118,9 +117,8 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
                 ? "We'll invite you in as we begin launching."
                 : "We'll reach out as we begin onboarding restaurants."}
             </p>
-          </div>
+          </div> 
 
-          {/* Optional location follow-up */}
           {!locationSaved ? (
             <div className="w-full flex flex-col gap-2 pt-1">
               <p className="text-xs text-gray-400 text-center tracking-wide">
@@ -150,9 +148,9 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
                   >
                     Send
                   </button>
-                </div>
+                </div> 
+{/* 
 
-                {/* Suggestions dropdown */}
                 {showSuggestions && filteredSuggestions.length > 0 && (
                   <ul className="absolute z-10 top-full mt-1 left-0 right-0 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
                     {filteredSuggestions.slice(0, 6).map((loc) => (
@@ -167,52 +165,52 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
                   </ul>
                 )}
               </div>
-            </div>
+            </div> 
           ) : (
             <p className="text-xs text-gray-400 text-center">
               Thanks — we'll keep you posted as AVIVO grows.
             </p>
           )}
         </div>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="w-full flex justify-center flex-col sm:flex-row gap-2"
-          noValidate
+      ) : ( */}
+      <form
+        onSubmit={handleSubmit}
+        className="w-full flex justify-center flex-col sm:flex-row gap-2"
+        noValidate
+      >
+        <div className="w-full relative p-[2px] overflow-hidden rounded-full group">
+          <div className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,#1E3A8A_0deg,#3B82F6_120deg,#D4AF37_240deg,#1E3A8A_360deg)] group-focus-within:animate-[spin_1.5s_linear_infinite]" />
+          <input
+            type="email"
+            id={`email-${id}`}
+            value={email}
+            autoFocus={true}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (error) setError('');
+            }}
+            placeholder={
+              activeTab === 'Guest'
+                ? 'your@email.com'
+                : 'example@restaurant.com'
+            }
+            className={`relative w-full h-full bg-white px-4 py-2 rounded-full outline-none text-black ${
+              error
+                ? 'border-red-400 focus:ring-2 focus:ring-red-200'
+                : 'w-full bg-white dark:bg-white'
+            }`}
+            disabled={loading}
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isDisabled}
+          className="px-6 py-3 bg-black text-white text-sm font-medium rounded-full transition-all duration-150 whitespace-nowrap hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none"
         >
-          <div className="w-full relative p-[2px] overflow-hidden rounded-full group">
-            <div className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,#1E3A8A_0deg,#3B82F6_120deg,#D4AF37_240deg,#1E3A8A_360deg)] group-focus-within:animate-[spin_1.5s_linear_infinite]" />
-            <input
-              type="email"
-              id={`email-${id}`}
-              value={email}
-              autoFocus={true}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (error) setError('');
-              }}
-              placeholder={
-                activeTab === 'Guest'
-                  ? 'your@email.com'
-                  : 'example@restaurant.com'
-              }
-              className={`relative w-full h-full bg-white px-4 py-2 rounded-full outline-none text-black ${
-                error
-                  ? 'border-red-400 focus:ring-2 focus:ring-red-200'
-                  : 'w-full bg-white dark:bg-white'
-              }`}
-              disabled={loading}
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={isDisabled}
-            className="px-6 py-3 bg-black text-white text-sm font-medium rounded-full transition-all duration-150 whitespace-nowrap hover:bg-gray-800 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none"
-          >
-            {loading ? 'Joining…' : 'Join Waitlist'}
-          </button>
-        </form>
-      )}
+          {loading ? 'Joining…' : 'Join Waitlist'}
+        </button>
+      </form>
+      {/* )} */}
 
       {error && (
         <p className="text-xs text-red-500 -mt-2 self-start pl-4">{error}</p>
