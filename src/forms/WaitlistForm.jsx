@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { supabase } from '../lib/subabase';
+import { supabase } from '../lib/supabase';
 import searchLocation from '../lib/geoLocation';
-import Modal from '../componenets/ModalWrapper';
+// import Modal from '../componenets/ModalWrapper';
 import LocationSuggestionModal from '../componenets/LocationSuggestionModal';
 import ActiveTabToggle from '../componenets/ActiveTabToggle';
 
