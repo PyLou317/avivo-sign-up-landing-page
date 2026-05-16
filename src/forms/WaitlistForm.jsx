@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ActiveTabToggle from '../componenets/ActiveTabToggle';
 
 const LOCATION_SUGGESTIONS = [
   'Vancouver',
@@ -75,7 +76,9 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
 
   return (
     <div className="w-full max-w-md mx-auto flex flex-col items-center gap-5">
-      <div className="flex items-center bg-gray-100 rounded-full p-1 gap-1">
+      <ActiveTabToggle activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* <div className="flex items-center bg-gray-100 rounded-full p-1 gap-1">
         {['Guest', 'Restaurant'].map((tab) => (
           <button
             key={tab}
@@ -90,7 +93,7 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
             {tab}
           </button>
         ))}
-      </div>
+      </div> */}
 
       {submitted ? (
         <div className="w-full flex flex-col items-center gap-4">
@@ -164,11 +167,13 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
           className="w-full flex justify-center flex-col sm:flex-row gap-2"
           noValidate
         >
-          <div className="relative group p-[2px] sm:w-full rounded-full bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 animate-pulse">
+          <div className="w-full relative p-[2px] overflow-hidden rounded-full group">
+            <div className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,#1E3A8A_0deg,#3B82F6_120deg,#D4AF37_240deg,#1E3A8A_360deg)] group-focus-within:animate-[spin_1.5s_linear_infinite]" />
             <input
               type="email"
               id={`email-${id}`}
               value={email}
+              autoFocus={true}
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (error) setError('');
@@ -176,13 +181,13 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
               placeholder={
                 activeTab === 'Guest'
                   ? 'your@email.com'
-                  : 'restaurant@email.com'
+                  : 'example@restaurant.com'
               }
-              className={`${
+              className={`relative w-full h-full bg-white px-4 py-2 rounded-full outline-none text-black ${
                 error
                   ? 'border-red-400 focus:ring-2 focus:ring-red-200'
-                  : 'w-full bg-white dark:bg-white rounded-full px-4 py-2 outline-none'
-              } bg-white`}
+                  : 'w-full bg-white dark:bg-white'
+              }`}
               disabled={loading}
             />
           </div>
