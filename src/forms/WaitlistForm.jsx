@@ -1,39 +1,22 @@
 import { useState } from 'react';
 import ActiveTabToggle from '../componenets/ActiveTabToggle';
 
-const LOCATION_SUGGESTIONS = [
-  'Vancouver',
-  'Yaletown',
-  'Kitsilano',
-  'Mount Pleasant',
-  'Burnaby',
-  'Surrey',
-  'Langley',
-  'Richmond',
-  'North Vancouver',
-  'Coquitlam',
-  'Abbotsford',
-  'Chilliwack',
-  'Whistler',
-  'Kelowna',
-  'Victoria',
-  'Seattle',
-  'Calgary',
-  'Edmonton',
-  'Toronto',
-  'Montreal',
-];
-
 function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [query, setQuery] = useState('');
+  const [cityResults, setCityResults] = useState([]);
 
   // Location follow-up state
   const [locationInput, setLocationInput] = useState('');
   const [locationSaved, setLocationSaved] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const isValidEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
 
@@ -41,7 +24,17 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
   const trimmedEmail = email.trim();
   const isDisabled = trimmedEmail === '' || loading;
 
-  const handleSubmit = (e) => {
+  console.log('Location Input: ', locationInput);
+
+  const handleSearch = async (e) => {
+    setQuery(e.target.value);
+    if (e.target.value.length > 2) {
+      const data = await searchLocation(e.target.value);
+      setCityResults(data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return; // guard against rapid re-submits
     const normalised = email.trim();
@@ -49,29 +42,62 @@ function WaitlistForm({ activeTab, setActiveTab, id = 'form' }) {
       setError('Please enter a valid email address.');
       return;
     }
-    setEmail(normalised); // store trimmed value
-    setError('');
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setEmail(normalised);
+
+    const { error: supabaseError } = await supabase
+      .from('guest-sign-ups')
+      .insert([{ email: email, type: activeTab }]);
+
+    if (supabaseError) {
+      setError(supabaseError.message);
+      // CHECK THE ERROR HERE
+      if (supabaseError.message.includes('email')) {
+        setErrorMessage("You're already on the waitlist!");
+      } else {
+        setErrorMessage(supabaseError.message);
+      }
+    } else {
       setSubmitted(true);
-    }, 1200);
+      setIsOpen(true);
+      setEmail('');
+      setError('');
+      setErrorMessage('');
+      setQuery('');
+      setCityResults([]);
+      setLocationInput('');
+      setLocationSaved(false);
+      setShowSuggestions(false);
+    }
+    setLoading(false);
   };
 
-  const filteredSuggestions = locationInput.trim()
-    ? LOCATION_SUGGESTIONS.filter((loc) =>
-        loc.toLowerCase().includes(locationInput.toLowerCase()),
-      )
-    : [];
-
   const handleLocationSelect = (loc) => {
+    const fullLocation = loc.province
+      ? `${loc.name}, ${loc.province}`
+      : loc.name;
+
+    setQuery(fullLocation);
     setLocationInput(loc);
     setShowSuggestions(false);
   };
 
-  const handleLocationSave = () => {
+  const handleLocationSubmit = async (e) => {
     setLocationSaved(true);
-    setShowSuggestions(false);
+    e.preventDefault();
+
+    const { error } = await supabase
+      .from('new-location-suggestions')
+      .insert([
+        { city_name: locationInput.name, province: locationInput.province },
+      ]);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSubmitted(true);
+      setIsOpen(false);
+    }
+    setLoading(false);
   };
 
   return (
