@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router';
 import Navbar from './componenets/TopNavBar.jsx';
 import App from './App.jsx';
-import GuestsLearnMore from './pages/guests/GuestLearnMore';
-import RestaurantsLearnMore from './pages/restaurants/RestaurantsLearnMore'
+import GuestsLearnMore from './pages/guests/GuestLearnMore.jsx';
+import RestaurantsLearnMore from './pages/restaurants/RestaurantsLearnMore.jsx'
 
 function Root() {
   const [activeTab, setActiveTab] = useState('Guest');
